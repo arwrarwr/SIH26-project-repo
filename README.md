@@ -1,2 +1,12 @@
 # 155-mm-artillery-shell
-project repo for SIH2026
+
+Project repo for Smart India Hackathon 2026 for the problem statement:
+
+_Development of a Low-Cost Precision Guidance and Smart Electronic Fuze System for a 155 mm Artillery Shell_
+PS No: SIH26098
+
+[6DOF.py](6DOF.py) - simulates the actual and the ideal path of the artillery in flight
+
+[artillery_viewer.html](artillery_viewer.html) - mirrors the orientation of the shell in a dashboard
+
+[final.ino](final.ino) - code to control the canards and the fuze system, uploaded in the microcontroller
