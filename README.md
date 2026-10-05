@@ -61,7 +61,7 @@ The dashboard provides a live representation of the system's sensor readings and
 </table>
 
 
-<img align="left" width="350" height="200" src="assets/cattgit.avif">
+<img align="left" width="260" height="200" src="assets/cattgit.avif">
 
 <div align="center">
 
