@@ -61,6 +61,8 @@ The dashboard provides a live representation of the system's sensor readings and
 </table>
 
 
+<img align="left" width="350" height="200" src="assets/cattgit.avif">
+
 <div align="center">
 
 ### Core Components
@@ -72,12 +74,14 @@ The dashboard provides a live representation of the system's sensor readings and
       <sub>Simulates the actual and ideal flight trajectories of the artillery shell.</sub>
     </td>
   </tr>
+
   <tr>
     <td align="center">
       <a href="artillery_viewer.html"><strong>artillery_viewer.html</strong></a><br>
       <sub>Interactive dashboard that mirrors the orientation of the shell during flight.</sub>
     </td>
   </tr>
+
   <tr>
     <td align="center">
       <a href="final.cpp"><strong>final.cpp</strong></a><br>
@@ -87,5 +91,9 @@ The dashboard provides a live representation of the system's sensor readings and
 </table>
 
 </div>
+
+<br clear="all">
+
+
 
 
