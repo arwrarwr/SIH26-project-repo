@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cylinder Orientation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e8ecf0;--panel:#fff;--line:#d3d9e0;--text:#1c2430;--muted:#66717f;--accent:#0f8b8d;--warn:#c77d0a}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:radial-gradient(circle at 50% 40%,#f5f7f9,var(--bg));color:var(--text);font:14px/1.45 "IBM Plex Sans",system-ui,sans-serif}
+canvas{display:block;width:100%;height:100%}
+#panel{position:fixed;top:14px;left:14px;width:264px;max-height:calc(100% - 28px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:14px}
+h1{font-size:16px;margin:0;font-weight:600}
+#status{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px}
+#dot{width:9px;height:9px;border-radius:50%;background:#b3bcc6;flex:none}
+#dot.live{background:var(--accent)} #dot.stale{background:var(--warn)}
+button,label.btn{font:inherit;font-weight:600;text-align:center;padding:8px 12px;border-radius:7px;border:1px solid var(--line);background:#f6f8fa;color:var(--text);cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button:hover,label.btn:hover{filter:brightness(.96)}
+button:focus-visible,label.btn:focus-within,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.btn input{position:absolute;opacity:0;width:1px;height:1px}
+.read{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:15px}
+.read span:nth-child(odd){color:var(--muted);font-family:"IBM Plex Sans",sans-serif;font-weight:400}
+.read span:nth-child(even){text-align:right}
+fieldset{border:1px solid var(--line);border-radius:8px;margin:0;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+legend{color:var(--muted);font-size:12px;padding:0 4px}
+fieldset label{display:flex;gap:8px;align-items:center}
+select{font:inherit;padding:4px;border-radius:6px;border:1px solid var(--line);background:#fff}
+#msg{color:var(--muted);font-size:12px;min-height:1.4em}
+</style>
+</head>
+<body>
+<div id="panel">
+  <h1>Cylinder orientation</h1>
+  <div id="status"><i id="dot"></i><span id="statusText">Not connected</span></div>
+  <button id="connect" class="primary">Connect to ESP32</button>
+  <label class="btn">Load artillery.glb<input id="file" type="file" accept=".glb,.gltf"></label>
+  <div class="read">
+    <span>Pitch</span><span id="rp">0.0°</span>
+    <span>Roll</span><span id="rr">0.0°</span>
+    <span>Yaw</span><span id="ry">0.0°</span>
+  </div>
+  <button id="zero">Set current pose as zero</button>
+  <fieldset>
+    <legend>Axis mapping</legend>
+    <label><input type="checkbox" id="swap"> Swap pitch and roll</label>
+    <label><input type="checkbox" id="invP"> Invert pitch</label>
+    <label><input type="checkbox" id="invR"> Invert roll</label>
+    <label><input type="checkbox" id="useYaw"> Use yaw (magnetometer)</label>
+    <label><input type="checkbox" id="invY"> Invert yaw</label>
+    <label>Model length runs along
+      <select id="axis"><option value="y">Y</option><option value="x">X</option><option value="z">Z</option></select>
+    </label>
+  </fieldset>
+  <div id="msg"></div>
+</div>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const $ = id => document.getElementById(id);
+const msg = t => $('msg').textContent = t;
+
+// ---------- Scene ----------
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+document.body.prepend(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+camera.position.set(4.5, 3, 6);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.target.set(0, 0, 0);
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0x8894a3, 1.1));
+const sun = new THREE.DirectionalLight(0xffffff, 1.6);
+sun.position.set(4, 8, 5);
+scene.add(sun);
+
+const grid = new THREE.GridHelper(10, 20, 0x9aa5b1, 0xc7cfd8);
+grid.position.y = -2.2;
+scene.add(grid);
+
+// body = live orientation; holder = fixes the model's own axis; model = the mesh
+const body = new THREE.Group();
+const holder = new THREE.Group();
+body.add(holder);
+scene.add(body);
+
+function placeholder() {
+  const g = new THREE.Group();
+  const mat = new THREE.MeshStandardMaterial({ color: 0x5f7f99, roughness: .5, metalness: .3 });
+  const tube = new THREE.Mesh(new THREE.CylinderGeometry(.5, .5, 3, 48), mat);
+  const nose = new THREE.Mesh(new THREE.ConeGeometry(.5, .9, 48), new THREE.MeshStandardMaterial({ color: 0xc77d0a, roughness: .5 }));
+  nose.position.y = 1.95;
+  g.add(tube, nose);
+  return g;
+}
+
+let model = placeholder();
+holder.add(model);
+
+function setModel(obj) {
+  holder.remove(model);
+  model = obj;
+  const box = new THREE.Box3().setFromObject(model);
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+  const s = 3.6 / Math.max(size.x, size.y, size.z);
+  const wrap = new THREE.Group();
+  model.position.sub(center);          // centre the mesh on its own middle
+  wrap.add(model);
+  wrap.scale.setScalar(s);
+  holder.add(wrap);
+  model = wrap;
+}
+
+const loader = new GLTFLoader();
+function loadModel(url, label) {
+  loader.load(url, gltf => { setModel(gltf.scene); msg(label + ' loaded'); },
+    undefined, () => msg('Could not read ' + label + '. Use "Load cylinder.glb".'));
+}
+$('file').addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (f) loadModel(URL.createObjectURL(f), f.name);
+});
+// Works automatically when the page is served over http next to cylinder.glb
+if (location.protocol.startsWith('http')) loadModel('cylinder.glb', 'cylinder.glb');
+else msg('Opened from disk: choose cylinder.glb with the button above.');
+
+$('axis').addEventListener('change', e => {
+  holder.rotation.set(0, 0, 0);
+  if (e.target.value === 'x') holder.rotation.z = Math.PI / 2;
+  if (e.target.value === 'z') holder.rotation.x = -Math.PI / 2;
+});
+
+// ---------- Orientation ----------
+const raw = { pitch: 0, roll: 0, yaw: 0 };
+let zero = { pitch: 0, roll: 0, yaw: 0 };
+try { zero = JSON.parse(localStorage.getItem('cylZero')) || zero; } catch (e) {}
+const target = new THREE.Quaternion();
+const qMount = new THREE.Quaternion();
+const qYaw = new THREE.Quaternion();
+const UP = new THREE.Vector3(0, 1, 0);
+const rad = d => d * Math.PI / 180;
+const lim = a => Math.max(-89.5, Math.min(89.5, a));
+let lastData = 0;
+
+// Apply the axis-mapping checkboxes to a pitch/roll pair
+function mapAngles(p, r) {
+  if ($('swap').checked) [p, r] = [r, p];
+  if ($('invP').checked) p = -p;
+  if ($('invR').checked) r = -r;
+  return [p, r];
+}
+
+// Direction of "up" as felt by the sensor, rebuilt from the two tilt angles
+function upVec(p, r) {
+  return new THREE.Vector3(Math.tan(rad(lim(r))), 1, -Math.tan(rad(lim(p)))).normalize();
+}
+
+function applyOrientation() {
+  const [p, r] = mapAngles(raw.pitch, raw.roll);
+  const [p0, r0] = mapAngles(zero.pitch, zero.roll);
+
+  // Mounting correction: whatever the sensor read at the zero pose becomes true vertical
+  qMount.setFromUnitVectors(upVec(p0, r0), UP);
+  const up = upVec(p, r).applyQuaternion(qMount);
+  target.setFromUnitVectors(up, UP);
+
+  let y = $('useYaw').checked ? raw.yaw - zero.yaw : 0;
+  if ($('invY').checked) y = -y;
+  qYaw.setFromAxisAngle(UP, rad(y));
+  target.premultiply(qYaw);
+
+  $('rp').textContent = raw.pitch.toFixed(1) + '°';
+  $('rr').textContent = raw.roll.toFixed(1) + '°';
+  $('ry').textContent = raw.yaw.toFixed(1) + '°';
+}
+
+$('zero').onclick = () => {
+  zero = { pitch: raw.pitch, roll: raw.roll, yaw: raw.yaw };
+  try { localStorage.setItem('cylZero', JSON.stringify(zero)); } catch (e) {}
+  msg('Zero saved. It will be remembered next time you open this page.');
+};
+
+// ---------- Serial (expects "pitch,yaw,roll" lines at 115200) ----------
+function setStatus(cls, text) { $('dot').className = cls; $('statusText').textContent = text; }
+
+function parseLine(line) {
+  const p = line.split(',');
+  if (p.length !== 3) return;
+  const [pitch, yaw, roll] = p.map(Number);
+  if ([pitch, yaw, roll].some(Number.isNaN)) return;
+  Object.assign(raw, { pitch, yaw, roll });
+  lastData = performance.now();
+}
+
+$('connect').onclick = async () => {
+  if (!('serial' in navigator)) { msg('Web Serial needs Chrome or Edge on desktop.'); return; }
+  try {
+    const port = await navigator.serial.requestPort();
+    await port.open({ baudRate: 115200 });
+    setStatus('stale', 'Connected, waiting for data');
+    msg('The ESP32 restarts on connect. Data begins after its startup countdown.');
+    $('connect').disabled = true;
+    const dec = new TextDecoderStream();
+    port.readable.pipeTo(dec.writable);
+    const reader = dec.readable.getReader();
+    let buf = '';
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buf += value;
+      let i;
+      while ((i = buf.indexOf('\n')) >= 0) { parseLine(buf.slice(0, i).trim()); buf = buf.slice(i + 1); }
+    }
+  } catch (err) {
+    msg('Serial error: ' + err.message + '. Close the Arduino Serial Monitor if it is open.');
+  }
+  $('connect').disabled = false;
+  setStatus('', 'Disconnected');
+};
+
+// ---------- Render loop ----------
+function resize() {
+  const w = innerWidth, h = innerHeight;
+  renderer.setSize(w, h);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+addEventListener('resize', resize);
+resize();
+
+renderer.setAnimationLoop(() => {
+  applyOrientation();
+  body.quaternion.slerp(target, 0.25);
+  if (lastData) {
+    const live = performance.now() - lastData < 1500;
+    if (live !== $('dot').classList.contains('live')) setStatus(live ? 'live' : 'stale', live ? 'Receiving live data' : 'No data in the last second');
+  }
+  controls.update();
+  renderer.render(scene, camera);
+});
+</script>
+</body>
+</html>
