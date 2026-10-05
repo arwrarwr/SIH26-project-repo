@@ -1,3 +1,11 @@
+<p align="center">
+  <img src="assets/canard-view.avif" width="320">
+  <img src="assets/skyview.avif" width="320">
+  <img src="assets/artillery-impact.avif" width="320">
+</p>
+
+
+
 # 155-mm-artillery-shell
 
 Project repo for Smart India Hackathon 2026 for the problem statement:
