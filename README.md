@@ -1,7 +1,7 @@
 <p align="center">
-  <img src="assets/canard-view.avif" width="280">
-  <img src="assets/skyview.avif" width="280">
-  <img src="assets/artillery-impact.avif" width="280">
+  <img src="assets/canard-view.avif" width="260">
+  <img src="assets/skyview.avif" width="260">
+  <img src="assets/artillery-impact.avif" width="260">
 </p>
 
 
