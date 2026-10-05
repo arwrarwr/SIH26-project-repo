@@ -17,4 +17,4 @@ PS No: SIH26098
 
 [artillery_viewer.html](artillery_viewer.html) - mirrors the orientation of the shell in a dashboard
 
-[final.ino](final.ino) - code to control the canards and the fuze system, uploaded in the microcontroller
+[final.cpp](final.cpp) - code to control the canards and the fuze system, uploaded in the microcontroller
