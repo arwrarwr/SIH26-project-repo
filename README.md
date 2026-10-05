@@ -5,6 +5,7 @@
 </p>
 
 
+
 <p align="center">
   <strong>155-mm-artillery-shell</strong><br>
   Project repo for <em>Smart India Hackathon 2026</em><br>
@@ -28,6 +29,8 @@ An IMU provides orientation data, allowing the control system to detect deviatio
 </tr>
 </table>
 
+
+
 <table align="center">
 <tr>
 <td width="50%">
@@ -38,7 +41,21 @@ An IMU provides orientation data, allowing the control system to detect deviatio
 ## Fuze System
 The multi-modal electronic fuze uses proximity and impact sensors to detect the selected terminal condition.
 A microcontroller processes these inputs and switches between proximity, impact, and timed demonstration modes.
+</td>
+</tr>
+</table>
 
+
+<table align="center">
+<tr>
+<td width="50%">
+<img src="assets/digital-demo.avif" width="100%">
+</td>
+<td width="50%" valign="middle">
+  
+## HTML Demo
+Real-time sensor data from the guidance system is transmitted to an interactive HTML dashboard, where the artillery shell's orientation and canard movement are visualized.
+The dashboard provides a live representation of the system's sensor readings and actuator state during operation.
 </td>
 </tr>
 </table>
