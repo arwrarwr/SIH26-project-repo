@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>155-mm-artillery-shell · Smart India Hackathon 2026</title>
+    <link rel="icon" href="assets/images/catt.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="wrap">
+            <img class="hero-logo" src="assets/images/catt.png" alt="Project logo">
+            <h1>155-mm-artillery-shell</h1>
+            <p class="event">Project repo for <em>Smart India Hackathon 2026</em></p>
+            <div class="brief">
+                <span class="brief-id">PS No: SIH26098</span>
+                <p><em>Development of a Low-Cost Precision Guidance and Smart Electronic Fuze System for a 155 mm
+                        Artillery Shell</em></p>
+            </div>
+            <div class="reel">
+                <img src="assets/demo-videos/canard-view.avif" alt="Canard view">
+                <img src="assets/demo-videos/skyview.avif" alt="Sky view">
+                <img src="assets/demo-videos/artillery-impact.avif" alt="Artillery impact">
+            </div>
+        </div>
+    </header>
+
+    <main class="wrap">
+
+        <section class="feature">
+            <figure class="frame"><img src="assets/demo-videos/canard-demo.avif" alt="Canard control demo"></figure>
+            <div class="copy">
+                <h2>Canard Control</h2>
+                <p>The canard actuation system uses four servo motors positioned at 90° intervals to control the shell’s
+                    aerodynamic surfaces.</p>
+                <p>An IMU provides orientation data, allowing the control system to detect deviation from the intended
+                    trajectory and adjust the canards accordingly.</p>
+            </div>
+        </section>
+
+        <section class="feature flip">
+            <figure class="frame"><img src="assets/demo-videos/fuze-system.avif" alt="Fuze system demo"></figure>
+            <div class="copy">
+                <h2>Fuze System</h2>
+                <p>The multi-modal electronic fuze uses proximity and impact sensors to detect the selected terminal
+                    condition.</p>
+                <p>A microcontroller processes these inputs and switches between proximity, impact, and timed
+                    demonstration modes.</p>
+            </div>
+        </section>
+
+        <section class="feature">
+            <figure class="frame"><img src="assets/demo-videos/digital-demo.avif" alt="HTML dashboard demo"></figure>
+            <div class="copy">
+                <h2>HTML Demo</h2>
+                <p>Real-time sensor data from the guidance system is transmitted to an interactive HTML dashboard, where
+                    the artillery shell’s orientation and canard movement are visualized.</p>
+                <p>The dashboard provides a live representation of the system’s sensor readings and actuator state
+                    during operation.</p>
+            </div>
+        </section>
+
+        <section class="components">
+            <div class="comp-list">
+                <h2>Core Components</h2>
+                <a class="comp" href="https://github.com/osgilliath/SIH26-project-repo/blob/main/6DOF.py">
+                    <strong>6DOF.py</strong>
+                    <span>Simulates the actual and ideal flight trajectories of the artillery shell.</span>
+                </a>
+                <a class="comp" href="https://github.com/osgilliath/SIH26-project-repo/blob/main/artillery_viewer.html">
+                    <strong>artillery_viewer.html</strong>
+                    <span>Interactive dashboard that mirrors the orientation of the shell during flight.</span>
+                </a>
+                <a class="comp" href="https://github.com/osgilliath/SIH26-project-repo/blob/main/final.cpp">
+                    <strong>final.cpp</strong>
+                    <span>Microcontroller firmware for the canard actuation and electronic fuze systems.</span>
+                </a>
+            </div>
+            <figure class="frame"><img src="assets/images/cattgit.avif" alt="Project illustration"></figure>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="wrap foot">
+            <img src="assets/images/logo-w.png" alt="Team logo">
+            <p>Smart India Hackathon 2026 · PS No: SIH26098<br>Team: Better Call Tech Support</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

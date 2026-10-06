@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>155-mm-artillery-shell · Smart India Hackathon 2026</title>
+  <meta name="description"
+    content="Low-cost precision guidance and smart electronic fuze system for a 155 mm artillery shell. SIH26098.">
+  <link rel="icon" href="assets/images/catt.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Instrument+Sans:wght@400;500;600&family=Martian+Mono:wght@400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --dark: #0A3323;
+      --moss: #839958;
+      --beige: #F7F4D5;
+      --rose: #D3968C;
+      --teal: #105666;
+      --display: 'Fraunces', Georgia, serif;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+      --mono: 'Martian Mono', ui-monospace, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--beige);
+      font-family: var(--body);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased
+    }
+
+    img {
+      display: block;
+      max-width: 100%
+    }
+
+    a {
+      color: inherit
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--rose);
+      outline-offset: 3px;
+      border-radius: 4px
+    }
+
+    .wrap {
+      width: min(1120px, 100% - 3rem);
+      margin-inline: auto
+    }
+
+    /* Hero */
+    .hero {
+      padding: clamp(4rem, 10vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -40% -10%;
+      height: 70%;
+      background: radial-gradient(ellipse at center, var(--teal) 0%, transparent 65%);
+      opacity: .55;
+      pointer-events: none
+    }
+
+    .hero>.wrap {
+      position: relative
+    }
+
+    .logo {
+      width: 72px;
+      height: auto;
+      margin: 0 auto 1.75rem
+    }
+
+    .hero h1 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: -.03em;
+      color: var(--beige)
+    }
+
+    .hero .event {
+      margin-top: 1.1rem;
+      color: var(--moss);
+      font-weight: 500
+    }
+
+    .problem {
+      max-width: 34rem;
+      margin: 2.25rem auto 0;
+      padding: 1.4rem 1.6rem;
+      border: 1px solid color-mix(in srgb, var(--moss) 45%, transparent);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--dark) 70%, black 0%)
+    }
+
+    .problem p {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.25rem;
+      line-height: 1.4
+    }
+
+    .problem small {
+      display: block;
+      margin-top: .9rem;
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--rose)
+    }
+
+    /* Features */
+    .features {
+      padding: 2rem 0 4rem
+    }
+
+    .feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: center;
+      padding: clamp(2.5rem, 6vw, 4.5rem) 0
+    }
+
+    .feature+.feature {
+      border-top: 1px solid color-mix(in srgb, var(--moss) 30%, transparent)
+    }
+
+    .feature:nth-child(even) .media {
+      order: 2
+    }
+
+    .media {
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--teal);
+      border: 1px solid color-mix(in srgb, var(--beige) 15%, transparent);
+      box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .6)
+    }
+
+    .media img {
+      width: 100%;
+      height: auto
+    }
+
+    .feature h2 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: 1.1rem;
+      padding-left: 1rem;
+      border-left: 4px solid var(--accent, var(--moss))
+    }
+
+    .feature p {
+      max-width: 30rem;
+      color: color-mix(in srgb, var(--beige) 88%, var(--dark))
+    }
+
+    .feature p+p {
+      margin-top: 1rem
+    }
+
+    .feature:nth-child(1) {
+      --accent: var(--moss)
+    }
+
+    .feature:nth-child(2) {
+      --accent: var(--rose)
+    }
+
+    .feature:nth-child(3) {
+      --accent: var(--teal)
+    }
+
+    .feature:nth-child(3) h2 {
+      border-left-color: #2a8aa0
+    }
+
+    /* Components */
+    .components {
+      background: var(--beige);
+      color: var(--dark);
+      padding: clamp(4rem, 8vw, 6.5rem) 0
+    }
+
+    .components .wrap {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: center
+    }
+
+    .components h2 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -.02em;
+      margin-bottom: 1.75rem
+    }
+
+    .files {
+      list-style: none;
+      border-top: 1px solid color-mix(in srgb, var(--dark) 25%, transparent)
+    }
+
+    .files li {
+      border-bottom: 1px solid color-mix(in srgb, var(--dark) 25%, transparent)
+    }
+
+    .files a {
+      display: block;
+      padding: 1.1rem .25rem;
+      text-decoration: none;
+      transition: background .2s, padding .2s
+    }
+
+    .files a:hover {
+      background: color-mix(in srgb, var(--moss) 22%, transparent);
+      padding-inline: 1rem
+    }
+
+    .files strong {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--teal)
+    }
+
+    .files span {
+      display: block;
+      margin-top: .2rem;
+      font-size: .95rem;
+      color: color-mix(in srgb, var(--dark) 80%, var(--beige))
+    }
+
+    .components .art {
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 24px 50px -28px rgba(10, 51, 35, .7)
+    }
+
+    .components .art img {
+      width: 100%;
+      height: auto
+    }
+
+    /* Footer */
+    footer {
+      padding: 3.5rem 0;
+      text-align: center;
+      background: var(--teal)
+    }
+
+    footer img {
+      width: 56px;
+      height: auto;
+      margin: 0 auto 1rem
+    }
+
+    footer p {
+      font-size: .95rem
+    }
+
+    footer .team {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-top: .2rem;
+      color: var(--rose)
+    }
+
+    /* One entrance moment */
+    @media (prefers-reduced-motion:no-preference) {
+      .hero .wrap>* {
+        animation: rise .9s cubic-bezier(.2, .7, .2, 1) both
+      }
+
+      .hero .wrap>*:nth-child(2) {
+        animation-delay: .1s
+      }
+
+      .hero .wrap>*:nth-child(3) {
+        animation-delay: .2s
+      }
+
+      .hero .wrap>*:nth-child(4) {
+        animation-delay: .3s
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(18px)
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+      }
+    }
+
+    @media (max-width:800px) {
+
+      .feature,
+      .components .wrap {
+        grid-template-columns: 1fr
+      }
+
+      .feature:nth-child(even) .media {
+        order: 0
+      }
+
+      .components .art {
+        order: -1
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <img class="logo" src="assets/images/catt.png" alt="Project logo">
+      <h1>155-mm-artillery-shell</h1>
+      <p class="event">Project repo for Smart India Hackathon 2026</p>
+      <div class="problem">
+        <p>Development of a Low-Cost Precision Guidance and Smart Electronic Fuze System for a 155 mm Artillery Shell
+        </p>
+        <small>Problem statement SIH26098</small>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="features wrap" aria-label="System overview">
+      <article class="feature">
+        <div class="media"><img src="assets/demo-videos/canard-demo.avif" alt="Canard control demo" loading="lazy">
+        </div>
+        <div>
+          <h2>Canard Control</h2>
+          <p>The canard actuation system uses four servo motors positioned at 90° intervals to control the shell’s
+            aerodynamic surfaces.</p>
+          <p>An IMU provides orientation data, allowing the control system to detect deviation from the intended
+            trajectory and adjust the canards accordingly.</p>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="media"><img src="assets/demo-videos/fuze-system.avif" alt="Fuze system demo" loading="lazy"></div>
+        <div>
+          <h2>Fuze System</h2>
+          <p>The multi-modal electronic fuze uses proximity and impact sensors to detect the selected terminal
+            condition.</p>
+          <p>A microcontroller processes these inputs and switches between proximity, impact, and timed demonstration
+            modes.</p>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="media"><img src="assets/demo-videos/digital-demo.avif" alt="HTML dashboard demo" loading="lazy">
+        </div>
+        <div>
+          <h2>HTML Demo</h2>
+          <p>Real-time sensor data from the guidance system is transmitted to an interactive HTML dashboard, where the
+            artillery shell’s orientation and canard movement are visualized.</p>
+          <p>The dashboard provides a live representation of the system’s sensor readings and actuator state during
+            operation.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="components" aria-labelledby="core">
+      <div class="wrap">
+        <div>
+          <h2 id="core">Core Components</h2>
+          <ul class="files">
+            <li><a
+                href="https://github.com/osgilliath/SIH26-project-repo/blob/main/6DOF.py"><strong>6DOF.py</strong><span>Simulates
+                  the actual and ideal flight trajectories of the artillery shell.</span></a></li>
+            <li><a
+                href="https://github.com/osgilliath/SIH26-project-repo/blob/main/artillery_viewer.html"><strong>artillery_viewer.html</strong><span>Interactive
+                  dashboard that mirrors the orientation of the shell during flight.</span></a></li>
+            <li><a
+                href="https://github.com/osgilliath/SIH26-project-repo/blob/main/final.cpp"><strong>final.cpp</strong><span>Microcontroller
+                  firmware for the canard actuation and electronic fuze systems.</span></a></li>
+          </ul>
+        </div>
+        <div class="art"><img src="assets/images/cattgit.avif" alt="Project illustration" loading="lazy"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <img src="assets/images/logo-w.png" alt="Team logo">
+    <p>Smart India Hackathon 2026 · PS No: SIH26098</p>
+    <p class="team">Team Better Call Tech Support</p>
+  </footer>
+
+</body>
+
+</html>
