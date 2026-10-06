@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
- <img src="assets/logo-w.png" width="60" height="70" align="center"><strong>155-mm-artillery-shell</strong><br>
+ <img src="assets/logo-w.png" width="60" height="60" align="center"><strong>155-mm-artillery-shell</strong><br>
   Project repo for <em>Smart India Hackathon 2026</em><br>
   Problem Statement:<br>
   <em>Development of a Low-Cost Precision Guidance and Smart Electronic Fuze System for a 155 mm Artillery Shell</em><br>
