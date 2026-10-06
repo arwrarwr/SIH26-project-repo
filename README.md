@@ -114,6 +114,8 @@ The dashboard provides a live representation of the system’s sensor readings a
 <p align="center">
   <sub >
     Smart India Hackathon 2026 · PS No: SIH26098 
+    <br>
+    Team : Better Call Tech Support
   </sub>
 </p>
 
