@@ -8,9 +8,10 @@
     <link rel="icon" href="assets/images/catt.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    <link <link <link
+        href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700;900&family=Mansalva&display=swap"
         rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -22,9 +23,11 @@
             <h1>155-mm-artillery-shell</h1>
             <p class="event">Project repo for <em>Smart India Hackathon 2026</em></p>
             <div class="brief">
-                <span class="brief-id">PS No: SIH26098</span>
-                <p><em>Development of a Low-Cost Precision Guidance and Smart Electronic Fuze System for a 155 mm
-                        Artillery Shell</em></p>
+                <span class="brief-id"><small>PS No</small>SIH26098</span>
+                <p class="typed"
+                    aria-label="Development of a Low-Cost Precision Guidance and Smart Electronic Fuze System for a 155 mm Artillery Shell">
+                    Development of a Low-Cost Precision Guidance and Smart Electronic Fuze System for a 155 mm Artillery
+                    Shell</p>
             </div>
             <div class="reel">
                 <img src="assets/demo-videos/canard-view.avif" alt="Canard view">
@@ -33,7 +36,6 @@
             </div>
         </div>
     </header>
-
     <main class="wrap">
 
         <section class="feature">
@@ -72,18 +74,30 @@
         <section class="components">
             <div class="comp-list">
                 <h2>Core Components</h2>
-                <a class="comp" href="https://github.com/osgilliath/SIH26-project-repo/blob/main/6DOF.py">
-                    <strong>6DOF.py</strong>
-                    <span>Simulates the actual and ideal flight trajectories of the artillery shell.</span>
-                </a>
-                <a class="comp" href="https://github.com/osgilliath/SIH26-project-repo/blob/main/artillery_viewer.html">
-                    <strong>artillery_viewer.html</strong>
-                    <span>Interactive dashboard that mirrors the orientation of the shell during flight.</span>
-                </a>
-                <a class="comp" href="https://github.com/osgilliath/SIH26-project-repo/blob/main/final.cpp">
-                    <strong>final.cpp</strong>
-                    <span>Microcontroller firmware for the canard actuation and electronic fuze systems.</span>
-                </a>
+                <nav class="cards" aria-label="Core components">
+                    <a class="card" href="6DOF.py">
+                        <span class="card-tag">PY</span>
+                        <strong>6DOF.py</strong>
+                        <span class="card-desc">Simulates the actual and ideal flight trajectories of the artillery
+                            shell.</span>
+                        <span class="card-arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a class="card"
+                        href="https://github.com/arwrarwr/SIH26-project-repo/blob/main/artillery_viewer.html">
+                        <span class="card-tag">HTML</span>
+                        <strong>artillery_viewer.html</strong>
+                        <span class="card-desc">Interactive dashboard that mirrors the orientation of the shell during
+                            flight.</span>
+                        <span class="card-arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a class="card" href="final.cpp">
+                        <span class="card-tag">C++</span>
+                        <strong>final.cpp</strong>
+                        <span class="card-desc">Microcontroller firmware for the canard actuation and electronic fuze
+                            systems.</span>
+                        <span class="card-arrow" aria-hidden="true">→</span>
+                    </a>
+                </nav>
             </div>
             <figure class="frame"><img src="assets/images/cattgit.avif" alt="Project illustration"></figure>
         </section>
@@ -96,6 +110,21 @@
             <p>Smart India Hackathon 2026 · PS No: SIH26098<br>Team: Better Call Tech Support</p>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            var el = document.querySelector('.typed');
+            if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var text = el.textContent, i = 0;
+            el.textContent = '';
+            el.classList.add('typing');
+            (function tick() {
+                el.textContent = text.slice(0, ++i);
+                if (i < text.length) setTimeout(tick, 28);
+                else el.classList.add('done');
+            })();
+        })();
+    </script>
 
 </body>
 
