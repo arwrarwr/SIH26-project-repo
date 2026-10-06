@@ -74,7 +74,7 @@ The dashboard provides a live representation of the system’s sensor readings a
 
 <table align="center" width="100%">
 <tr>
-<td width="50%" valign="middle">
+<td width="50%" valign="middle" align="center">
 
 ### Core Components
 
