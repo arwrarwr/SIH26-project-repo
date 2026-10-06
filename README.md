@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>155-mm-artillery-shell</strong><br>
+ <img src="assets/logo-w.png" width="60" height="70" align="center"><strong>155-mm-artillery-shell</strong><br>
   Project repo for <em>Smart India Hackathon 2026</em><br>
   Problem Statement:<br>
   <em>Development of a Low-Cost Precision Guidance and Smart Electronic Fuze System for a 155 mm Artillery Shell</em><br>
@@ -41,6 +41,7 @@ An IMU provides orientation data, allowing the control system to detect deviatio
 <td width="50%" valign="middle">
 
 ## Fuze System
+
 
 The multi-modal electronic fuze uses proximity and impact sensors to detect the selected terminal condition.
 
@@ -88,7 +89,7 @@ The dashboard provides a live representation of the system’s sensor readings a
 <tr>
 <td align="center">
   <a href="artillery_viewer.html"><strong>artillery_viewer.html</strong></a><br>
-  <sub>Interactive dashboard that mirrors the orientation of the shell during flight.</sub>
+  <sub> Interactive dashboard that mirrors the orientation of the shell during flight.</sub>
 </td>
 </tr>
 
@@ -111,9 +112,10 @@ The dashboard provides a live representation of the system’s sensor readings a
 <br>
 
 <p align="center">
-  <sub>Smart India Hackathon 2026 · PS No: SIH26098</sub>
+  <sub >
+    Smart India Hackathon 2026 · PS No: SIH26098 
+  </sub>
 </p>
-
 
 
 
