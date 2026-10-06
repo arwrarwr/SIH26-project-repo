@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="assets/canard-view.avif" width="32%">
-  <img src="assets/skyview.avif" width="32%">
-  <img src="assets/artillery-impact.avif" width="32%">
+  <img src="assets/demo-videos/canard-view.avif" width="32%">
+  <img src="assets/demo-videos/skyview.avif" width="32%">
+  <img src="assets/demo-videos/artillery-impact.avif" width="32%">
 </p>
 
 <p align="center">
- <img src="assets/catt.png" width="60" height="55" align="center"><strong>155-mm-artillery-shell</strong><br>
+ <img src="assets/images/catt.png" width="60" height="55" align="center"><strong>155-mm-artillery-shell</strong><br>
   Project repo for <em>Smart India Hackathon 2026</em><br>
   Problem Statement:<br>
   <em>Development of a Low-Cost Precision Guidance and Smart Electronic Fuze System for a 155 mm Artillery Shell</em><br>
@@ -17,7 +17,7 @@
 <table align="center" width="100%">
 <tr>
 <td width="50%" align="center" valign="middle">
-  <img src="assets/canard-demo.avif" width="100%">
+  <img src="assets/demo-videos/canard-demo.avif" width="100%">
 </td>
 <td width="50%" valign="middle">
 
@@ -36,7 +36,7 @@ An IMU provides orientation data, allowing the control system to detect deviatio
 <table align="center" width="100%">
 <tr>
 <td width="50%" align="center" valign="middle">
-  <img src="assets/fuze-system.avif" width="100%">
+  <img src="assets/demo-videos/fuze-system.avif" width="100%">
 </td>
 <td width="50%" valign="middle">
 
@@ -56,7 +56,7 @@ A microcontroller processes these inputs and switches between proximity, impact,
 <table align="center" width="100%">
 <tr>
 <td width="50%" align="center" valign="middle">
-  <img src="assets/digital-demo.avif" width="100%">
+  <img src="assets/demo-videos/digital-demo.avif" width="100%">
 </td>
 <td width="50%" valign="middle">
 
@@ -104,7 +104,7 @@ The dashboard provides a live representation of the system’s sensor readings a
 </td>
 
 <td width="50%" align="center" valign="middle">
-  <img src="assets/cattgit.avif" width="100%">
+  <img src="assets/images/cattgit.avif" width="100%">
 </td>
 </tr>
 </table>
@@ -119,7 +119,7 @@ The dashboard provides a live representation of the system’s sensor readings a
   <sub >
     Smart India Hackathon 2026 · PS No: SIH26098 
     <br> 
-     <img src="assets/logo-w.png" width="60" height="60" align="center">
+     <img src="assets/images/logo-w.png" width="60" height="60" align="center">
     Team : Better Call Tech Support
   </sub>
 </p>
