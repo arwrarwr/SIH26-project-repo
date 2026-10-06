@@ -1,0 +1,727 @@
+:root {
+    --dark: #0A3323;
+    --moss: #839958;
+    --beige: #F7F4D5;
+    --rosy: #D3968C;
+    --midnight: #105666;
+    --bg: #E4D8D5;
+    --bg-deep: #D6C6C3;
+    --ink: #0A3323;
+    --muted: #4d5f56;
+    --display: "Big Shoulders Stencil Display", "Impact", sans-serif;
+    --mono: "Mansalva", "Segoe Print", "Comic Sans MS", cursive;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    font-family: var(--mono);
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--bg);
+    background-image: linear-gradient(rgba(10, 51, 35, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(10, 51, 35, .05) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px
+}
+
+img {
+    display: block;
+    max-width: 100%
+}
+
+em {
+    font-style: normal
+}
+
+/* ---------- hero ---------- */
+.hero {
+    padding: 72px 0 64px;
+    border-bottom: 2px solid var(--dark);
+    background: var(--bg-deep)
+}
+
+.hero-logo {
+    width: 60px;
+    height: 55px;
+    object-fit: contain;
+    margin-bottom: 20px
+}
+
+h1 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(2.6rem, 8.5vw, 6.2rem);
+    line-height: .95;
+    letter-spacing: .01em;
+    color: var(--dark);
+}
+
+.event {
+    margin-top: 18px;
+    color: var(--midnight);
+    font-size: 18px;
+}
+
+.event em {
+    color: var(--dark);
+}
+
+/* ---------- animated brief (no box) ---------- */
+.brief {
+    margin-top: 28px;
+    max-width: 640px;
+    position: relative
+}
+
+/* outlined number + drawn underline (no box) */
+.brief-id {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 0 20px;
+    padding: 0 0 16px;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    line-height: 1;
+    letter-spacing: .05em;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--midnight);
+    transition: color .3s;
+}
+
+.brief-id small {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--rosy);
+    -webkit-text-stroke: 0;
+}
+
+.brief-id small::before {
+    content: "";
+    width: 30px;
+    height: 2px;
+    background: var(--rosy)
+}
+
+/* wavy underline */
+.brief-id::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 10px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'%3E%3Cpath d='M0 5Q5 0 10 5T20 5' fill='none' stroke='%23D3968C' stroke-width='2.5'/%3E%3C/svg%3E") repeat-x 0 0/20px 10px;
+    animation: draw 1s .5s ease both;
+}
+
+.brief-id:hover {
+    color: var(--midnight)
+}
+
+@keyframes draw {
+    from {
+        clip-path: inset(0 100% 0 0)
+    }
+}
+
+/* typed problem statement */
+.typed {
+    color: var(--dark);
+    font-size: 21px;
+    min-height: 4.5em
+}
+
+.typed.typing::after {
+    content: "";
+    display: inline-block;
+    width: .55ch;
+    height: 1.1em;
+    margin-left: 2px;
+    background: var(--rosy);
+    vertical-align: text-bottom;
+    animation: blink .8s steps(1) infinite;
+}
+
+.typed.done::after {
+    animation: blink .8s steps(1) 4, fadeOut .3s ease 3.4s forwards
+}
+
+.reel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 44px
+}
+
+.reel img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border: 2px solid var(--dark);
+    background: var(--dark)
+}
+
+/* ---------- features ---------- */
+.feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 72px 0;
+    border-bottom: 1px solid rgba(10, 51, 35, .25)
+}
+
+.feature.flip .frame {
+    order: 2
+}
+
+h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1;
+    color: var(--midnight);
+    margin-bottom: 18px
+}
+
+.copy p {
+    color: var(--muted);
+    margin-bottom: 14px;
+    max-width: 46ch
+}
+
+.frame {
+    position: relative;
+    background: var(--dark);
+    padding: 8px;
+    box-shadow: 10px 10px 0 var(--rosy)
+}
+
+.frame img {
+    width: 100%
+}
+
+/* ---------- components: technical scanner ---------- */
+.components {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 72px 0 88px
+}
+
+.comp-list h2 {
+    margin-bottom: 28px
+}
+
+.cards {
+    --axis-h: 92px;
+    --disp-h: 272px;
+    --node-cy: 26px;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-bottom: calc(var(--disp-h) + 16px);
+    counter-reset: node;
+    /* axis: progress fill, base line, tick marks */
+    background-image:
+        linear-gradient(var(--rosy), var(--rosy)),
+        linear-gradient(rgba(10, 51, 35, .35), rgba(10, 51, 35, .35)),
+        repeating-linear-gradient(90deg, rgba(10, 51, 35, .45) 0 1px, transparent 1px 14px);
+    background-repeat: no-repeat;
+    background-position: 0 calc(var(--node-cy) - 2px), 0 calc(var(--node-cy) - 1px), 0 calc(var(--node-cy) - 9px);
+    background-size: 16.667% 4px, 100% 2px, 100% 7px;
+    transition: background-size .45s cubic-bezier(.7, 0, .2, 1);
+}
+
+.cards:has(.card:nth-child(2):is(:hover, :focus-visible)) {
+    background-size: 50% 4px, 100% 2px, 100% 7px
+}
+
+.cards:has(.card:nth-child(3):is(:hover, :focus-visible)) {
+    background-size: 83.333% 4px, 100% 2px, 100% 7px
+}
+
+/* central display panel */
+.cards::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: var(--axis-h);
+    height: var(--disp-h);
+    background:
+        linear-gradient(rgba(10, 51, 35, .07) 1px, transparent 1px) 0 0/24px 24px,
+        linear-gradient(90deg, rgba(10, 51, 35, .07) 1px, transparent 1px) 0 0/24px 24px,
+        var(--beige);
+    border: 2px solid var(--dark);
+    outline: 1px dashed rgba(16, 86, 102, .45);
+    outline-offset: -9px;
+    box-shadow: 8px 8px 0 var(--moss);
+    transition: box-shadow .3s;
+}
+
+.cards:has(.card:is(:hover, :focus-visible))::before {
+    box-shadow: 8px 8px 0 var(--rosy)
+}
+
+/* scanner head: slides along the panel edge to the active node */
+.cards::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--axis-h) - 9px);
+    left: 16.667%;
+    width: 16px;
+    height: 16px;
+    background: var(--rosy);
+    border: 2px solid var(--dark);
+    transform: translateX(-50%) rotate(45deg);
+    pointer-events: none;
+    transition: left .45s cubic-bezier(.7, 0, .2, 1);
+}
+
+.cards:has(.card:nth-child(2):is(:hover, :focus-visible))::after {
+    left: 50%
+}
+
+.cards:has(.card:nth-child(3):is(:hover, :focus-visible))::after {
+    left: 83.333%
+}
+
+/* node (the card's own box is the hit area) */
+.card {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: var(--axis-h);
+    counter-increment: node;
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+.card::before {
+    content: counter(node, decimal-leading-zero);
+    margin-top: 6px;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--beige);
+    border: 2px solid var(--dark);
+    font: 700 18px/1 var(--display);
+    color: var(--dark);
+    transition: transform .25s, background .25s, color .25s;
+}
+
+.card:focus-visible::before {
+    outline: 2px solid var(--midnight);
+    outline-offset: 4px
+}
+
+.card-tag {
+    margin-top: 6px;
+    padding: 0 8px;
+    font-size: 14px;
+    letter-spacing: .1em;
+    color: var(--muted);
+    transition: background .25s, color .25s
+}
+
+/* display contents: hidden until their node is active */
+.card strong,
+.card-desc,
+.card-arrow,
+.card::after {
+    position: absolute;
+    visibility: hidden
+}
+
+/* invisible hit area over the panel + sweeping scan beam */
+.card::after {
+    content: "";
+    left: 0;
+    right: 0;
+    top: var(--axis-h);
+    height: var(--disp-h);
+    background: linear-gradient(90deg, transparent, rgba(211, 150, 140, .35) 70%, rgba(211, 150, 140, .85) 97%, transparent) no-repeat;
+    background-size: 90px 100%;
+    background-position: -90px 0;
+}
+
+.card strong {
+    left: 24px;
+    right: 24px;
+    top: calc(var(--axis-h) + 20px);
+    white-space: nowrap;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    line-height: 1;
+    color: var(--dark);
+}
+
+.card strong::before {
+    content: "SCAN " counter(node, decimal-leading-zero) " / 03 · TARGET LOCKED";
+    display: block;
+    margin-bottom: 6px;
+    font: 400 15px/1.2 var(--mono);
+    letter-spacing: .14em;
+    color: var(--midnight);
+}
+
+.card strong::after {
+    content: "_";
+    color: var(--rosy);
+    animation: blink 1s steps(1) infinite
+}
+
+.card-desc {
+    left: 24px;
+    top: calc(var(--axis-h) + 100px);
+    width: calc(100% - 154px - 68px);
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--muted);
+}
+
+.card-desc::after {
+    content: "CLICK TO OPEN →";
+    display: block;
+    margin-top: 10px;
+    font-size: 15px;
+    letter-spacing: .12em;
+    color: var(--midnight);
+    animation: nudge 1.4s ease-in-out infinite;
+}
+
+/* preview screen (the old arrow span becomes a mini monitor) */
+.card-arrow {
+    top: calc(var(--axis-h) + 96px);
+    right: 24px;
+    width: 154px;
+    height: 104px;
+    overflow: hidden;
+    font-size: 0;
+    color: transparent;
+    background-color: var(--dark);
+    border: 2px solid var(--dark);
+    box-shadow: 5px 5px 0 var(--rosy);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.card-arrow::before {
+    /* CRT scanlines */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .22) 0 1px, transparent 1px 3px);
+}
+
+/* 01: ideal vs actual trajectory, shell flies the arc */
+.card:nth-child(1) .card-arrow {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 100'%3E%3Cpath d='M12 84Q75 -44 138 84' fill='none' stroke='%23839958' stroke-width='1.5' stroke-dasharray='4 3'/%3E%3Cpath d='M12 84Q72 -38 124 86' fill='none' stroke='%23D3968C' stroke-width='2'/%3E%3Cpath d='M4 90H146' stroke='%23F7F4D5' stroke-opacity='.4'/%3E%3C/svg%3E");
+}
+
+.card:nth-child(1) .card-arrow::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--beige);
+    box-shadow: 0 0 0 4px rgba(211, 150, 140, .45), 0 0 12px var(--rosy);
+    offset-path: path("M12 84 Q72 -38 124 86");
+    animation: fly 2.8s cubic-bezier(.4, 0, .6, 1) infinite;
+}
+
+/* 02: attitude gauge with a tilting shell */
+.card:nth-child(2) .card-arrow {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 100'%3E%3Ccircle cx='75' cy='50' r='40' fill='none' stroke='%23839958' stroke-width='1.5'/%3E%3Ccircle cx='75' cy='50' r='26' fill='none' stroke='%23839958' stroke-opacity='.5' stroke-dasharray='2 3'/%3E%3Cpath d='M25 50H125M75 0V100' stroke='%23839958' stroke-opacity='.4'/%3E%3C/svg%3E");
+}
+
+.card:nth-child(2) .card-arrow::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 70px;
+    height: 18px;
+    margin: -9px 0 0 -35px;
+    background: linear-gradient(90deg, var(--beige) 0 20%, var(--rosy) 20% 30%, var(--beige) 30%);
+    border-radius: 4px 100% 100% 4px/50%;
+    animation: tilt 3.2s ease-in-out infinite alternate;
+}
+
+/* 03: PWM trace with a sweeping read head */
+.card:nth-child(3) .card-arrow {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 100'%3E%3Cpolyline points='0,70 10,70 10,30 30,30 30,70 50,70 50,30 78,30 78,70 98,70 98,30 118,30 118,70 138,70 138,30 150,30' fill='none' stroke='%23839958' stroke-width='2'/%3E%3Cpath d='M0 85H150' stroke='%23F7F4D5' stroke-opacity='.3' stroke-dasharray='3 3'/%3E%3C/svg%3E");
+}
+
+.card:nth-child(3) .card-arrow::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    background: var(--rosy);
+    box-shadow: 0 0 10px var(--rosy);
+    animation: trace 2.4s linear infinite;
+}
+
+/* active node: hovered, focused, or node 01 by default */
+.card:is(:hover, :focus-visible),
+.cards:not(:has(.card:is(:hover, :focus-visible))) .card:first-child {
+    &::before {
+        background: var(--dark);
+        color: var(--beige);
+        transform: scale(1.15);
+        animation: ping 1.6s ease-out infinite
+    }
+
+    & .card-tag {
+        background: var(--midnight);
+        color: var(--beige)
+    }
+
+    &::after {
+        visibility: visible;
+        animation: beam 2.8s .4s infinite
+    }
+
+    & strong {
+        visibility: visible;
+        animation: reveal .5s cubic-bezier(.2, .7, .2, 1) both
+    }
+
+    & .card-desc {
+        visibility: visible;
+        animation: reveal .5s .08s cubic-bezier(.2, .7, .2, 1) both
+    }
+
+    & .card-arrow {
+        visibility: visible;
+        animation: pop .45s .16s ease both
+    }
+}
+
+/* ---------- footer ---------- */
+footer {
+    background: var(--dark);
+    color: var(--beige);
+    padding: 36px 0
+}
+
+.foot {
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+
+.foot img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain
+}
+
+.foot p {
+    font-size: 16px;
+    color: var(--rosy)
+}
+
+/* ---------- animations ---------- */
+@keyframes blink {
+    50% {
+        opacity: 0
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0
+    }
+}
+
+@keyframes stampDown {
+    0% {
+        opacity: 0;
+        transform: rotate(-30deg) scale(2.2)
+    }
+
+    60% {
+        opacity: 1;
+        transform: rotate(-10deg) scale(.94)
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotate(-12deg) scale(1)
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        clip-path: inset(-6px 100% -6px 0);
+        transform: translateX(-10px)
+    }
+
+    to {
+        opacity: 1;
+        clip-path: inset(-6px);
+        transform: none
+    }
+}
+
+@keyframes pop {
+    from {
+        opacity: 0;
+        transform: scale(.85)
+    }
+
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+@keyframes ping {
+    from {
+        box-shadow: 0 0 0 0 rgba(211, 150, 140, .8)
+    }
+
+    to {
+        box-shadow: 0 0 0 14px rgba(211, 150, 140, 0)
+    }
+}
+
+@keyframes beam {
+    0% {
+        background-position: -90px 0
+    }
+
+    70%,
+    100% {
+        background-position: calc(100% + 90px) 0
+    }
+}
+
+@keyframes nudge {
+    50% {
+        transform: translateX(6px)
+    }
+}
+
+@keyframes fly {
+    from {
+        offset-distance: 0%
+    }
+
+    to {
+        offset-distance: 100%
+    }
+}
+
+@keyframes tilt {
+    from {
+        transform: rotate(-16deg)
+    }
+
+    to {
+        transform: rotate(14deg)
+    }
+}
+
+@keyframes trace {
+    from {
+        transform: translateX(0)
+    }
+
+    to {
+        transform: translateX(150px)
+    }
+}
+
+/* ---------- responsive ---------- */
+@media(max-width:820px) {
+
+    .feature,
+    .components {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 48px 0
+    }
+
+    .feature.flip .frame {
+        order: 0
+    }
+
+    .reel {
+        grid-template-columns: 1fr
+    }
+
+    .reel img {
+        aspect-ratio: 16/9
+    }
+
+    .frame {
+        box-shadow: 6px 6px 0 var(--rosy)
+    }
+
+    /* scanner: preview moves below the text */
+    .cards {
+        --disp-h: 372px
+    }
+
+    .card-desc {
+        width: calc(100% - 48px)
+    }
+
+    .card-arrow {
+        top: calc(var(--axis-h) + 242px);
+        right: auto;
+        left: 24px
+    }
+}
+
+/* ---------- reduced motion ---------- */
+@media(prefers-reduced-motion:reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important
+    }
+}
